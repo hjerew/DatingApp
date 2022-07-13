@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
-import { map } from 'rxjs/operators';
-//import { User } from 'src/app/_models/User';
+import  { map } from 'rxjs/operators';
+import { User } from '../_models/user';
 
 
 
@@ -17,8 +17,8 @@ export class AccountService {
   constructor(private http: HttpClient) { }
 
   login(model: any) {
-    return this.http.post(this.baseUrl + 'account/login', model).pipe(
-      map((response: any) => {
+    return this.http.post<User>(this.baseUrl + 'account/login', model).pipe(
+      map((response: User) => {
         const user = response;
         if (user) {
           localStorage.setItem('user', JSON.stringify(user));
@@ -34,6 +34,6 @@ export class AccountService {
 
   logout(){
     localStorage.removeItem('user');
-    this.currentUserSource.next(null);
+    this.currentUserSource.next(undefined);
   }
 }

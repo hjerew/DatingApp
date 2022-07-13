@@ -10,6 +10,10 @@
     "src/polyfills.ts"
   ],
   "include": [
-    "src/**/*.d.ts"
+    "src",
+    "src/**/*.ts",
+    "@types/**/*.d.ts",
+    "node_modules/axios",
+    "node_modules/redux-thunk"
   ]
 }
